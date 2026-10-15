@@ -1,0 +1,1958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SynapsisBiomed</title>
+
+    <meta
+        name="description"
+        content="Synapsis is an educational publishing project connecting science, psychology and learning through books and accessible educational content."
+    >
+
+    <meta name="theme-color" content="#f7f9ff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        :root {
+            --blue: #2457e6;
+            --blue-light: #eaf0ff;
+            --navy: #10234d;
+            --ink: #17223b;
+            --muted: #68748c;
+            --paper: #f7f9ff;
+            --white: #ffffff;
+            --line: #e6eaf4;
+            --shadow: 0 20px 60px rgba(24, 52, 112, 0.09);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--ink);
+            background: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 105px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 19px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 25px;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 5px;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand-name {
+            font-family: "Manrope", sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            overflow-wrap: break-word;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin-bottom: 22px;
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.15;
+            letter-spacing: -1.7px;
+            font-weight: 800;
+        }
+
+        .section-description {
+            max-width: 640px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .blue-text {
+            color: var(--blue);
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.91);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(230, 234, 244, 0.85);
+        }
+
+        .nav-inner {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .brand-mark {
+            position: relative;
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--blue);
+            box-shadow: 0 8px 20px rgba(36, 87, 230, 0.22);
+        }
+
+        .brand-mark svg {
+            width: 29px;
+            height: 29px;
+        }
+
+        .brand-name {
+            font-size: 23px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.9px;
+            color: var(--navy);
+        }
+
+        .brand-caption {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links > a:not(.button) {
+            color: #4e5a73;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links > a:not(.button):hover {
+            color: var(--blue);
+        }
+
+        .button {
+            min-height: 47px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            padding: 0 21px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 9px 22px rgba(36, 87, 230, 0.19);
+        }
+
+        .button-primary:hover {
+            background: #1948ce;
+            box-shadow: 0 12px 28px rgba(36, 87, 230, 0.25);
+        }
+
+        .button-secondary {
+            background: var(--white);
+            border-color: var(--line);
+            color: var(--navy);
+        }
+
+        .button-secondary:hover {
+            border-color: #bdccf6;
+            background: #f9fbff;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--navy);
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    ellipse at 82% 32%,
+                    rgba(213, 226, 255, 0.72),
+                    transparent 36%
+                ),
+                linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 100px;
+            left: -180px;
+            width: 360px;
+            height: 360px;
+            border: 1px solid rgba(36, 87, 230, 0.07);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-grid {
+            min-height: 635px;
+            display: grid;
+            grid-template-columns: 1.03fr 0.97fr;
+            align-items: center;
+            gap: 45px;
+            padding-top: 60px;
+            padding-bottom: 70px;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 13px;
+            border: 1px solid #e0e8ff;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            margin-bottom: 25px;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 0 4px rgba(36, 87, 230, 0.11);
+        }
+
+        .hero h1 {
+            max-width: 650px;
+            font-size: clamp(43px, 5.5vw, 69px);
+            line-height: 1.07;
+            letter-spacing: -3.7px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero-description {
+            max-width: 510px;
+            margin-top: 25px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 34px;
+            color: #7b8599;
+            font-size: 12px;
+        }
+
+        .hero-note svg {
+            width: 19px;
+            height: 19px;
+            color: var(--blue);
+            flex-shrink: 0;
+        }
+
+        /* ANIMATED SYNAPSE HERO ART */
+
+        .visual {
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            min-height: 475px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .visual::before {
+            content: "";
+            position: absolute;
+            z-index: -2;
+            width: min(92%, 440px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(218, 230, 255, 0.95) 0%,
+                    rgba(235, 241, 255, 0.65) 45%,
+                    rgba(247, 249, 255, 0) 72%
+                );
+        }
+
+        .orbit {
+            position: absolute;
+            z-index: -1;
+            width: 390px;
+            max-width: 90%;
+            aspect-ratio: 1;
+            border: 1px solid rgba(36, 87, 230, 0.13);
+            border-radius: 50%;
+            animation: orbitFloat 8s ease-in-out infinite;
+        }
+
+        .orbit.two {
+            width: 330px;
+            border-style: dashed;
+            border-color: rgba(36, 87, 230, 0.12);
+            animation-delay: -4s;
+        }
+
+        .orb {
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #d5e2ff);
+            box-shadow: 0 8px 25px rgba(36, 87, 230, 0.1);
+            animation: orbFloat 5s ease-in-out infinite;
+        }
+
+        .orb-one {
+            width: 23px;
+            height: 23px;
+            top: 18%;
+            left: 15%;
+        }
+
+        .orb-two {
+            width: 13px;
+            height: 13px;
+            right: 12%;
+            top: 30%;
+            animation-delay: -2s;
+        }
+
+        .orb-three {
+            width: 17px;
+            height: 17px;
+            right: 18%;
+            bottom: 14%;
+            animation-delay: -3s;
+        }
+
+        .synapse-art {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: min(100%, 440px);
+            height: auto;
+            overflow: visible;
+            filter: drop-shadow(0 18px 24px rgba(36, 87, 230, 0.1));
+        }
+
+        .synapse-art .vesicle {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: vesiclePulse 2.7s ease-in-out infinite;
+        }
+
+        .synapse-art .vesicle:nth-child(2) {
+            animation-delay: -0.9s;
+        }
+
+        .synapse-art .vesicle:nth-child(3) {
+            animation-delay: -1.7s;
+        }
+
+        .synapse-art .receptor {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: receptorPulse 2.4s ease-in-out infinite;
+        }
+
+        .synapse-art .receptor:nth-child(2) {
+            animation-delay: -0.7s;
+        }
+
+        .synapse-art .receptor:nth-child(3) {
+            animation-delay: -1.4s;
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 3;
+            padding: 15px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 12px 35px rgba(27, 52, 105, 0.1);
+            backdrop-filter: blur(12px);
+            animation: cardFloat 5s ease-in-out infinite;
+        }
+
+        .card-top {
+            top: 9%;
+            right: 0;
+        }
+
+        .card-bottom {
+            left: 0;
+            bottom: 10%;
+            animation-delay: -2.5s;
+        }
+
+        .card-label {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-value {
+            margin-top: 3px;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        @keyframes orbitFloat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.035); }
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-13px); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes vesiclePulse {
+            0%, 100% { opacity: 0.78; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes receptorPulse {
+            0%, 100% {
+                opacity: 0.72;
+                filter: drop-shadow(0 0 0 rgba(36, 87, 230, 0));
+            }
+            50% {
+                opacity: 1;
+                filter: drop-shadow(0 0 5px rgba(36, 87, 230, 0.5));
+            }
+        }
+
+        /* TRUST STRIP */
+
+        .trust-strip {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        .trust-inner {
+            min-height: 95px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trust-icon {
+            width: 39px;
+            height: 39px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .trust-item strong {
+            display: block;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .trust-item span {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* PHILOSOPHY */
+
+        .philosophy {
+            background: var(--white);
+        }
+
+        .philosophy-header {
+            margin-bottom: 48px;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .philosophy-card {
+            padding: 30px 27px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .philosophy-card:hover {
+            transform: translateY(-5px);
+            border-color: #cfdbff;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 51px;
+            height: 51px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 23px;
+            border-radius: 16px;
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        .feature-icon svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .philosophy-card h3 {
+            margin-bottom: 12px;
+            color: var(--navy);
+            font-size: 19px;
+            letter-spacing: -0.4px;
+        }
+
+        .philosophy-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.85;
+        }
+
+        /* BOOKS */
+
+        .books {
+            background: var(--paper);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 75px;
+        }
+
+        .book-image-wrap {
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border: 1px solid #e7edfc;
+            border-radius: 30px;
+            background:
+                radial-gradient(
+                    circle at 50% 43%,
+                    #e1eaff 0%,
+                    #f4f7ff 58%,
+                    #ffffff 100%
+                );
+            overflow: hidden;
+        }
+
+        .book-image-wrap::before,
+        .book-image-wrap::after {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border: 1px solid rgba(36, 87, 230, 0.1);
+            border-radius: 50%;
+        }
+
+        .book-image-wrap::after {
+            width: 250px;
+            height: 250px;
+        }
+
+        .book-image {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            max-height: 365px;
+            object-fit: contain;
+            border-radius: 7px;
+            filter: drop-shadow(0 22px 22px rgba(16, 35, 77, 0.16));
+            transition: transform 0.3s ease;
+        }
+
+        .book-image:hover {
+            transform: translateY(-5px) rotate(-1deg);
+        }
+
+        .book-copy h2 {
+            margin-bottom: 22px;
+        }
+
+        .book-copy > p {
+            margin-bottom: 19px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .book-points {
+            display: grid;
+            gap: 14px;
+            margin: 27px 0 31px;
+            list-style: none;
+        }
+
+        .book-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #44516a;
+            font-size: 14px;
+        }
+
+        .check-icon {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+            border-radius: 50%;
+            background: #e8efff;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            padding: 95px 0;
+            background: var(--white);
+        }
+
+        .contact-panel {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+            padding: 55px 58px;
+            border-radius: 28px;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .contact-panel::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 360px;
+            height: 360px;
+            top: -200px;
+            right: 15%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 35px rgba(255, 255, 255, 0.025),
+                0 0 0 70px rgba(255, 255, 255, 0.025);
+        }
+
+        .contact-copy {
+            max-width: 630px;
+        }
+
+        .contact .section-label {
+            color: #a9c1ff;
+        }
+
+        .contact .section-label::before {
+            background: #a9c1ff;
+        }
+
+        .contact h2 {
+            margin-bottom: 17px;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.2;
+            letter-spacing: -1.4px;
+        }
+
+        .contact-copy p {
+            max-width: 530px;
+            color: #c1cce2;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .contact .button {
+            flex-shrink: 0;
+            background: #ffffff;
+            color: var(--navy);
+        }
+
+        .contact .button:hover {
+            background: #eaf0ff;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            border-top: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        .footer-main {
+            min-height: 125px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-description {
+            max-width: 300px;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: #59657c;
+            font-size: 12px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue);
+        }
+
+        .footer-bottom {
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid var(--line);
+            color: #8a94a7;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 18px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr 0.9fr;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: clamp(42px, 6vw, 58px);
+                letter-spacing: -2.7px;
+            }
+
+            .visual {
+                min-height: 400px;
+            }
+
+            .floating-card {
+                padding: 12px 14px;
+            }
+
+            .card-value {
+                font-size: 11px;
+            }
+
+            .books-grid {
+                gap: 40px;
+            }
+
+            .trust-inner {
+                gap: 16px;
+            }
+
+            .trust-item {
+                gap: 8px;
+            }
+
+            .trust-item span {
+                font-size: 10px;
+            }
+
+            .contact-panel {
+                padding: 42px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: min(100% - 36px, 540px);
+            }
+
+            .section {
+                padding: 76px 0;
+            }
+
+            .nav-inner {
+                min-height: 72px;
+                flex-wrap: wrap;
+            }
+
+            .brand-mark {
+                width: 39px;
+                height: 39px;
+            }
+
+            .brand-name {
+                font-size: 21px;
+            }
+
+            .mobile-menu-button {
+                display: grid;
+                place-items: center;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                padding: 0 0 18px;
+                align-items: stretch;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links > a:not(.button) {
+                padding: 12px 2px;
+                border-top: 1px solid var(--line);
+            }
+
+            .nav-links .button {
+                margin-top: 10px;
+            }
+
+            .hero-grid {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding-top: 62px;
+                padding-bottom: 40px;
+            }
+
+            .hero h1 {
+                max-width: 520px;
+                font-size: clamp(43px, 11vw, 61px);
+                letter-spacing: -2.8px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-note {
+                margin-top: 24px;
+            }
+
+            .visual {
+                width: min(100%, 460px);
+                min-height: 390px;
+                margin: 0 auto;
+            }
+
+            .synapse-art {
+                width: min(100%, 390px);
+            }
+
+            .orbit {
+                width: 340px;
+            }
+
+            .orbit.two {
+                width: 290px;
+            }
+
+            .card-top {
+                top: 5%;
+                right: 0;
+            }
+
+            .card-bottom {
+                bottom: 5%;
+                left: 0;
+            }
+
+            .trust-inner {
+                padding: 23px 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 22px 15px;
+            }
+
+            .trust-item {
+                align-items: flex-start;
+            }
+
+            .trust-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 15px;
+            }
+
+            .trust-item strong {
+                font-size: 11px;
+            }
+
+            .trust-item span {
+                font-size: 10px;
+                line-height: 1.6;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .philosophy-card {
+                padding: 25px;
+            }
+
+            .philosophy-header {
+                margin-bottom: 32px;
+            }
+
+            .section-heading {
+                font-size: clamp(32px, 8vw, 43px);
+                letter-spacing: -1.4px;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 38px;
+            }
+
+            .book-image-wrap {
+                min-height: 330px;
+            }
+
+            .book-image {
+                max-width: 255px;
+                max-height: 300px;
+            }
+
+            .contact {
+                padding: 68px 0;
+            }
+
+            .contact-panel {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 35px 27px;
+                gap: 26px;
+                border-radius: 22px;
+            }
+
+            .contact h2 {
+                font-size: 34px;
+                letter-spacing: -1px;
+            }
+
+            .footer-main {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 30px 0;
+                gap: 25px;
+            }
+
+            .footer-links {
+                gap: 16px 22px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding: 15px 0;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .hero-actions .button {
+                width: 100%;
+            }
+
+            .visual {
+                min-height: 330px;
+            }
+
+            .card-value {
+                font-size: 10px;
+            }
+
+            .floating-card {
+                padding: 10px 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+        <div class="container nav-inner">
+
+            <a class="brand" href="#home" aria-label="Synapsis home">
+                <span class="brand-mark">
+                    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                        <g
+                            stroke="#ffffff"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M20 20 L11 11 M20 20 L29 11 M20 20 L11 29 M20 20 L29 29"/>
+                            <path d="M20 20 L20 7 M20 20 L20 33"/>
+                        </g>
+                        <g fill="#ffffff">
+                            <circle cx="20" cy="20" r="4"/>
+                            <circle cx="11" cy="11" r="3"/>
+                            <circle cx="29" cy="11" r="3"/>
+                            <circle cx="11" cy="29" r="3"/>
+                            <circle cx="29" cy="29" r="3"/>
+                            <circle cx="20" cy="7" r="2.5"/>
+                            <circle cx="20" cy="33" r="2.5"/>
+                        </g>
+                    </svg>
+                </span>
+
+                <span>
+                    <span class="brand-name">Synapsis</span>
+                    <span class="brand-caption">Science · Learning · Ideas</span>
+                </span>
+            </a>
+
+            <button
+                class="mobile-menu-button"
+                id="menuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navLinks"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#books">Books</a>
+                <a href="#contact">Contact</a>
+                <a class="button button-primary" href="shop.html">
+                    Explore our books
+                    <span aria-hidden="true">↗</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-copy">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        KNOWLEDGE CONNECTS US
+                    </div>
+
+                    <h1>
+                        Where science meets
+                        <span>understanding.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        We turn complex ideas into meaningful learning
+                        experiences. Through science, biology and
+                        educational publishing, Synapsis brings knowledge
+                        closer to everyone.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="shop.html">
+                            Discover our books
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="button button-secondary" href="#about">
+                            Get to know us
+                        </a>
+                    </div>
+
+                    <div class="hero-note">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M12 3.5L14.6 9.1L20.5 10L16.2 14.2L17.2 20.2L12 17.3L6.8 20.2L7.8 14.2L3.5 10L9.4 9.1L12 3.5Z"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        <span>Curiosity is where every discovery begins.</span>
+                    </div>
+
+                </div>
+
+
+                <!-- ANIMATED SYNAPSE ILLUSTRATION -->
+
+                <div class="visual" aria-label="Animated synapse illustration">
+
+                    <div class="orbit"></div>
+                    <div class="orbit two"></div>
+
+                    <div class="orb orb-one"></div>
+                    <div class="orb orb-two"></div>
+                    <div class="orb orb-three"></div>
+
+                    <div class="floating-card card-top">
+                        <div class="card-label">Our focus</div>
+                        <div class="card-value">Science &amp; learning</div>
+                    </div>
+
+                    <svg
+                        class="synapse-art"
+                        viewBox="0 0 440 430"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        aria-label="Neurotransmitters cross the synaptic cleft and activate receptors on a neighbouring neuron"
+                    >
+
+                        <defs>
+                            <linearGradient id="synapseTop" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#9fc1ff"/>
+                                <stop offset="55%" stop-color="#5485f1"/>
+                                <stop offset="100%" stop-color="#2457e6"/>
+                            </linearGradient>
+
+                            <linearGradient id="synapseBottom" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#f1f5ff"/>
+                                <stop offset="100%" stop-color="#bfd2ff"/>
+                            </linearGradient>
+
+                            <radialGradient id="vesicleFill">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="100%" stop-color="#c8dcff"/>
+                            </radialGradient>
+
+                            <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+
+                        <!-- Upper neuron terminal -->
+
+                        <path
+                            d="M49 34
+                               C87 11 146 12 188 29
+                               C229 12 291 12 333 29
+                               C372 45 396 72 392 105
+                               C390 131 375 151 352 162
+                               C329 172 305 163 283 171
+                               C261 179 243 165 222 173
+                               C200 181 182 165 161 173
+                               C141 181 122 165 103 171
+                               C76 179 48 154 40 121
+                               C32 88 35 54 49 34Z"
+                            fill="url(#synapseTop)"
+                            stroke="#2457e6"
+                            stroke-width="2"
+                        />
+
+                        <!-- Presynaptic terminal highlights -->
+
+                        <path
+                            d="M60 54 C104 28 151 31 187 44"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            opacity=".42"
+                        />
+
+                        <!-- Synaptic vesicles -->
+
+                        <g stroke="#ffffff" stroke-width="2.5">
+                            <g class="vesicle">
+                                <circle cx="106" cy="76" r="19" fill="url(#vesicleFill)"/>
+                                <circle cx="106" cy="76" r="9" fill="#83b8ff" stroke="none"/>
+                                <circle cx="102" cy="72" r="3" fill="#ffffff" stroke="none"/>
+                            </g>
+
+                            <g class="vesicle">
+                                <circle cx="198" cy="91" r="22" fill="url(#vesicleFill)"/>
+                                <circle cx="198" cy="91" r="11" fill="#83b8ff" stroke="none"/>
+                                <circle cx="194" cy="87" r="3" fill="#ffffff" stroke="none"/>
+                            </g>
+
+                            <g class="vesicle">
+                                <circle cx="298" cy="72" r="18" fill="url(#vesicleFill)"/>
+                                <circle cx="298" cy="72" r="8" fill="#83b8ff" stroke="none"/>
+                                <circle cx="295" cy="69" r="2.5" fill="#ffffff" stroke="none"/>
+                            </g>
+                        </g>
+
+
+                        <!-- Synaptic cleft -->
+
+                        <path
+                            d="M48 203 Q220 188 392 203"
+                            fill="none"
+                            stroke="#9bb8ff"
+                            stroke-width="1.5"
+                            stroke-dasharray="4 7"
+                        />
+
+                        <path
+                            d="M48 222 Q220 207 392 222"
+                            fill="none"
+                            stroke="#9bb8ff"
+                            stroke-width="1.5"
+                            stroke-dasharray="4 7"
+                            opacity=".65"
+                        />
+
+
+                        <!-- Moving neurotransmitters -->
+
+                        <g fill="#ffffff" stroke="#2457e6" stroke-width="2">
+
+                            <circle r="6" filter="url(#softGlow)">
+                                <animateMotion
+                                    dur="2.7s"
+                                    repeatCount="indefinite"
+                                    path="M106 126 C103 164 145 202 145 247"
+                                />
+                            </circle>
+
+                            <circle r="5">
+                                <animateMotion
+                                    dur="3.1s"
+                                    begin="-1.2s"
+                                    repeatCount="indefinite"
+                                    path="M198 133 C198 172 220 207 220 247"
+                                />
+                            </circle>
+
+                            <circle r="6" filter="url(#softGlow)">
+                                <animateMotion
+                                    dur="2.9s"
+                                    begin="-1.8s"
+                                    repeatCount="indefinite"
+                                    path="M298 121 C300 164 295 208 295 247"
+                                />
+                            </circle>
+
+                            <circle r="4">
+                                <animateMotion
+                                    dur="3.4s"
+                                    begin="-2s"
+                                    repeatCount="indefinite"
+                                    path="M154 150 C165 185 170 211 170 248"
+                                />
+                            </circle>
+
+                            <circle r="4">
+                                <animateMotion
+                                    dur="3s"
+                                    begin="-.6s"
+                                    repeatCount="indefinite"
+                                    path="M255 145 C250 184 265 211 265 248"
+                                />
+                            </circle>
+
+                        </g>
+
+
+                        <!-- Lower neuron membrane -->
+
+                        <path
+                            d="M38 273
+                               C60 254 82 259 103 267
+                               C124 275 143 256 164 266
+                               C184 276 203 256 223 266
+                               C244 276 264 256 284 266
+                               C304 276 325 256 345 266
+                               C366 276 383 255 402 273
+                               L408 409
+                               L32 409Z"
+                            fill="url(#synapseBottom)"
+                            stroke="#7fa3f5"
+                            stroke-width="2"
+                        />
+
+                        <path
+                            d="M52 294 Q220 280 389 294"
+                            fill="none"
+                            stroke="#ffffff"
+                            stroke-width="3"
+                            opacity=".7"
+                        />
+
+
+                        <!-- Postsynaptic receptors -->
+
+                        <g
+                            fill="none"
+                            stroke="#2457e6"
+                            stroke-width="5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                class="receptor"
+                                d="M135 268 L135 250 Q135 238 145 238 Q155 238 155 250 L155 268"
+                            />
+
+                            <path
+                                class="receptor"
+                                d="M210 267 L210 249 Q210 237 220 237 Q230 237 230 249 L230 267"
+                            />
+
+                            <path
+                                class="receptor"
+                                d="M285 268 L285 250 Q285 238 295 238 Q305 238 305 250 L305 268"
+                            />
+                        </g>
+
+
+                        <!-- Small details inside the lower neuron -->
+
+                        <g fill="#ffffff" opacity=".75">
+                            <circle cx="78" cy="322" r="4"/>
+                            <circle cx="119" cy="360" r="3"/>
+                            <circle cx="174" cy="326" r="4"/>
+                            <circle cx="249" cy="356" r="3"/>
+                            <circle cx="329" cy="320" r="4"/>
+                            <circle cx="361" cy="370" r="3"/>
+                            <circle cx="279" cy="386" r="2.5"/>
+                            <circle cx="101" cy="388" r="2.5"/>
+                        </g>
+
+                    </svg>
+
+                    <div class="floating-card card-bottom">
+                        <div class="card-label">A world of ideas</div>
+                        <div class="card-value">Learn · Explore · Grow</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- TRUST STRIP -->
+
+        <section class="trust-strip" aria-label="Our approach">
+            <div class="container trust-inner">
+
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">✳</div>
+                    <div>
+                        <strong>Science-led</strong>
+                        <span>Grounded in evidence</span>
+                    </div>
+                </div>
+
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">⌘</div>
+                    <div>
+                        <strong>Learning-focused</strong>
+                        <span>Made to be understood</span>
+                    </div>
+                </div>
+
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">◎</div>
+                    <div>
+                        <strong>Curiosity-driven</strong>
+                        <span>Always asking why</span>
+                    </div>
+                </div>
+
+                <div class="trust-item">
+                    <div class="trust-icon" aria-hidden="true">↗</div>
+                    <div>
+                        <strong>Open to everyone</strong>
+                        <span>Knowledge without barriers</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT / PHILOSOPHY -->
+
+        <section class="section philosophy" id="about">
+            <div class="container">
+
+                <div class="philosophy-header">
+                    <div class="section-label">Our philosophy</div>
+
+                    <h2 class="section-heading">
+                        Knowledge becomes powerful when it
+                        <span class="blue-text">connects.</span>
+                    </h2>
+
+                    <p class="section-description">
+                        At Synapsis, we believe learning should be clear,
+                        engaging and accessible. We bring scientific ideas
+                        closer to everyday life, helping people explore the
+                        world with greater understanding.
+                    </p>
+                </div>
+
+                <div class="philosophy-grid">
+
+                    <article class="philosophy-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M4 19.5V5.8C4 4.8 4.8 4 5.8 4H20V18H6C4.9 18 4 18.7 4 19.5Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M8 8H16M8 11.5H15M4 19.5C4 18.7 4.9 18 6 18H20"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <h3>Educational publishing</h3>
+
+                        <p>
+                            Books and learning resources designed to make
+                            challenging subjects more approachable, organised
+                            and meaningful.
+                        </p>
+                    </article>
+
+
+                    <article class="philosophy-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="8.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                />
+                                <path
+                                    d="M12 7V12L15.5 14"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M5.5 5.5L4 4M18.5 5.5L20 4"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <h3>Accessible science</h3>
+
+                        <p>
+                            Scientific communication that respects the
+                            evidence while explaining complex ideas in a
+                            clear, engaging way.
+                        </p>
+                    </article>
+
+
+                    <article class="philosophy-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle
+                                    cx="8"
+                                    cy="8"
+                                    r="3"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                />
+                                <circle
+                                    cx="17"
+                                    cy="16"
+                                    r="3"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                />
+                                <path
+                                    d="M10.5 10.5L14.5 13.5M17 4V8M15 6H19M5 16V20M3 18H7"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+
+                        <h3>Ideas that connect</h3>
+
+                        <p>
+                            Exploring the connections between biology,
+                            psychology, learning and the questions that
+                            shape our understanding of the world.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- BOOKS -->
+
+        <section class="section books" id="books">
+            <div class="container books-grid">
+
+                <div class="book-image-wrap">
+                    <img
+                        class="book-image"
+                        src="images/secret-zoo.jpg"
+                        alt="Synapsis featured educational book"
+                        loading="lazy"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+
+                    <div
+                        class="book-fallback"
+                        style="display:none; position:relative; z-index:1; width:240px; min-height:320px; padding:28px; flex-direction:column; justify-content:space-between; border-radius:8px; background:linear-gradient(145deg,#2457e6,#10234d); color:white; box-shadow:0 22px 30px rgba(16,35,77,.2);"
+                        aria-label="Synapsis book placeholder"
+                    >
+                        <div style="font-size:10px; letter-spacing:3px; font-weight:700;">
+                            SYNAPSIS
+                        </div>
+                        <div>
+                            <div style="font-family:Manrope,sans-serif; font-size:28px; font-weight:800; line-height:1.15;">
+                                Science<br>begins with<br>curiosity.
+                            </div>
+                            <div style="margin-top:16px; font-size:11px; opacity:.8;">
+                                EDUCATIONAL PUBLISHING
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 100 60" width="100" fill="none" aria-hidden="true">
+                            <g stroke="#ffffff" stroke-width="1.5" opacity=".8">
+                                <path d="M50 30L20 10M50 30L80 10M50 30L20 50M50 30L80 50M50 30L50 4"/>
+                            </g>
+                            <g fill="#ffffff">
+                                <circle cx="50" cy="30" r="5"/>
+                                <circle cx="20" cy="10" r="4"/>
+                                <circle cx="80" cy="10" r="4"/>
+                                <circle cx="20" cy="50" r="4"/>
+                                <circle cx="80" cy="50" r="4"/>
+                                <circle cx="50" cy="4" r="3"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+
+                <div class="book-copy">
+
+                    <div class="section-label">Explore our books</div>
+
+                    <h2 class="section-heading">
+                        Learning that goes
+                        <span class="blue-text">beyond the page.</span>
+                    </h2>
+
+                    <p>
+                        Every learner deserves resources that encourage
+                        understanding rather than memorisation alone.
+                        Our educational publishing project is built around
+                        that idea.
+                    </p>
+
+                    <p>
+                        Explore our available titles and discover learning
+                        material created to support curiosity, knowledge
+                        and deeper understanding.
+                    </p>
+
+                    <ul class="book-points">
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Structured educational material</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Science-informed explanations</span>
+                        </li>
+                        <li>
+                            <span class="check-icon">✓</span>
+                            <span>Resources designed around learning</span>
+                        </li>
+                    </ul>
+
+                    <a class="button button-primary" href="shop.html">
+                        Visit the book collection
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section class="contact" id="contact">
+            <div class="container">
+
+                <div class="contact-panel">
+
+                    <div class="contact-copy">
+                        <div class="section-label">Let's connect</div>
+
+                        <h2>
+                            Have an idea worth exploring?
+                        </h2>
+
+                        <p>
+                            Whether you are interested in our books,
+                            educational collaborations or science
+                            communication, we'd love to hear from you.
+                        </p>
+                    </div>
+
+                    <a
+                        class="button"
+                        href="mailto:synapsispublishers@gmail.com"
+                    >
+                        Get in touch
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-main">
+
+            <div>
+                <a class="brand" href="#home" aria-label="Synapsis home">
+                    <span class="brand-mark">
+                        <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                            <g
+                                stroke="#ffffff"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M20 20 L11 11 M20 20 L29 11 M20 20 L11 29 M20 20 L29 29"/>
+                                <path d="M20 20 L20 7 M20 20 L20 33"/>
+                            </g>
+                            <g fill="#ffffff">
+                                <circle cx="20" cy="20" r="4"/>
+                                <circle cx="11" cy="11" r="3"/>
+                                <circle cx="29" cy="11" r="3"/>
+                                <circle cx="11" cy="29" r="3"/>
+                                <circle cx="29" cy="29" r="3"/>
+                                <circle cx="20" cy="7" r="2.5"/>
+                                <circle cx="20" cy="33" r="2.5"/>
+                            </g>
+                        </svg>
+                    </span>
+
+                    <span>
+                        <span class="brand-name">Synapsis</span>
+                        <span class="brand-caption">Science · Learning · Ideas</span>
+                    </span>
+                </a>
+
+                <p class="footer-description">
+                    Connecting science, ideas and people through
+                    accessible educational content.
+                </p>
+            </div>
+
+
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="shop.html">Books</a>
+                <a href="https://www.instagram.com/synapsis_biomed/" target="_blank" rel="noopener noreferrer">
+                    Instagram ↗
+                </a>
+                <a href="mailto:synapsispublishers@gmail.com">Email</a>
+            </nav>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+            <span>© <span id="currentYear"></span> Synapsis. All rights reserved.</span>
+            <span>Built around curiosity.</span>
+        </div>
+
+    </footer>
+
+
+    <script>
+        // Mobile navigation menu
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        // Close mobile menu after selecting a link
+        navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+                menuButton.textContent = "☰";
+            });
+        });
+
+        // Automatically update copyright year
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+

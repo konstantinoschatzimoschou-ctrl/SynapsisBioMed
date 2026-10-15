@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f9ff">
+    <meta name="description" content="Explore educational and scientific books from Synapsis.">
+    <title>Our Books — Synapsis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --blue: #2457e6;
+            --navy: #10234d;
+            --ink: #17223b;
+            --muted: #68748c;
+            --paper: #f7f9ff;
+            --line: #e6eaf4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--ink);
+            background: white;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin-inline: auto;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,.95);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            font-family: "Manrope", sans-serif;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--navy);
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            color: #526079;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 45px;
+            padding: 12px 19px;
+            border-radius: 9px;
+            background: var(--blue);
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform .2s, background .2s;
+        }
+
+        .button:hover {
+            background: #1745ca;
+            transform: translateY(-2px);
+        }
+
+        /* SHOP INTRO */
+
+        .shop-hero {
+            padding: 85px 0 60px;
+            background:
+                radial-gradient(ellipse at 85% 20%, #e4edff 0%, transparent 38%),
+                linear-gradient(135deg, #fff, #f7f9ff);
+        }
+
+        .kicker {
+            margin-bottom: 14px;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3 {
+            font-family: "Manrope", sans-serif;
+        }
+
+        h1 {
+            color: var(--navy);
+            font-size: clamp(40px, 5vw, 62px);
+            line-height: 1.12;
+            letter-spacing: -2.5px;
+        }
+
+        .shop-hero p {
+            max-width: 650px;
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        /* BOOK LIST */
+
+        .book-list {
+            padding: 20px 0 100px;
+        }
+
+        .list-heading {
+            margin-bottom: 25px;
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 24px;
+        }
+
+        .book-item {
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr);
+            align-items: center;
+            gap: 36px;
+            margin-bottom: 25px;
+            padding: 28px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 10px 35px #142b6106;
+            transition: box-shadow .25s, transform .25s;
+        }
+
+        .book-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px #142b6110;
+        }
+
+        .cover-frame {
+            min-height: 290px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border-radius: 10px;
+            background:
+                radial-gradient(circle at 70% 25%, #dce7ff, transparent 38%),
+                linear-gradient(145deg, #f0f4ff, #ffffff);
+        }
+
+        .cover-frame img {
+            display: block;
+            width: 100%;
+            height: 290px;
+            object-fit: contain;
+        }
+
+        .cover-fallback {
+            padding: 20px;
+            color: #7182a8;
+            font-size: 13px;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .book-category {
+            margin-bottom: 12px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .book-item h2 {
+            color: var(--navy);
+            font-size: clamp(22px, 2.5vw, 29px);
+            line-height: 1.35;
+            letter-spacing: -.8px;
+        }
+
+        .author {
+            margin-top: 10px;
+            color: #8290a8;
+            font-size: 13px;
+        }
+
+        .description {
+            max-width: 650px;
+            margin-top: 17px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .book-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            margin-top: 17px;
+            color: #71809a;
+            font-size: 12px;
+        }
+
+        .book-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            color: #7d889d;
+            font-size: 12px;
+        }
+
+        .footer-brand {
+            color: var(--navy);
+            font-family: "Manrope", sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                gap: 13px;
+                font-size: 12px;
+            }
+
+            .shop-hero {
+                padding: 65px 0 45px;
+            }
+
+            .book-item {
+                grid-template-columns: 155px minmax(0, 1fr);
+                gap: 22px;
+                padding: 18px;
+            }
+
+            .cover-frame,
+            .cover-frame img {
+                min-height: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                min-height: 72px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .nav-inner {
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 11px;
+                font-size: 11px;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .book-item {
+                grid-template-columns: 1fr;
+                gap: 22px;
+                padding: 20px;
+            }
+
+            .cover-frame {
+                width: min(250px, 100%);
+                margin-inline: auto;
+            }
+
+            .cover-frame,
+            .cover-frame img {
+                height: 300px;
+                min-height: 300px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a class="logo" href="index.html">synapsis<span>.</span></a>
+
+            <div class="nav-links">
+                <a href="index.html#philosophy">About</a>
+                <a href="shop.html">Books</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+
+            <a class="button nav-cta" href="index.html">Home ↗</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="shop-hero">
+            <div class="container">
+                <div class="kicker">The Synapsis collection</div>
+                <h1>Books for curious minds.</h1>
+                <p>
+                    Explore educational publications created to bring
+                    science, discovery and learning closer to everyone.
+                    Find your next read below.
+                </p>
+            </div>
+        </section>
+
+        <section class="book-list">
+            <div class="container">
+                <h2 class="list-heading">Our publications</h2>
+
+                <!-- BOOK 1: THE SECRET ZOO -->
+
+                <article class="book-item">
+                    <a class="cover-frame"
+                       href="https://www.amazon.com/dp/B0FY3VSW9B"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="View The Secret Zoo on Amazon">
+                        <img
+                            src="images/secret-zoo.jpg"
+                            alt="The Secret Zoo by Tom Cage book cover"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="cover-fallback" style="display:none">
+                            Add the real cover as images/secret-zoo.jpg.
+                        </span>
+                    </a>
+
+                    <div class="book-info">
+                        <div class="book-category">WILDLIFE · EDUCATION</div>
+
+                        <h2>The Secret Zoo: 30 of the World’s Most Bizzare &amp; Rare Animals</h2>
+
+                        <p class="author">By Tom Cage</p>
+
+                        <p class="description">
+                            Discover 30 extraordinary animals from around
+                            the world through colorful illustrations,
+                            fascinating scientific facts, and stories
+                            about their behaviors, habitats and survival.
+                            A fun introduction to wildlife for curious
+                            young readers.
+                        </p>
+
+                        <div class="book-details">
+                            <span>Paperback</span>
+                            <span>64 pages</span>
+                            <span>English</span>
+                            <span>Ages 8–12</span>
+                        </div>
+
+                        <div class="book-actions">
+                            <a class="button"
+                               href="https://www.amazon.com/dp/B0FY3VSW9B"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Buy Now ↗
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- BOOK 2: ABC LITTLE SCIENTIST -->
+
+                <article class="book-item">
+                    <a class="cover-frame"
+                       href="https://www.amazon.com/dp/B0FY3MD6CZ"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="View Let's Learn the ABC, Little Scientist on Amazon">
+                        <img
+                            src="images/abc-little-scientist.jpg"
+                            alt="Let's Learn the ABC, Little Scientist! by Tom Cage book cover"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="cover-fallback" style="display:none">
+                            Add the real cover as images/abc-little-scientist.jpg.
+                        </span>
+                    </a>
+
+                    <div class="book-info">
+                        <div class="book-category">SCIENCE · EARLY LEARNING</div>
+
+                        <h2>Let’s Learn the ABC, Little Scientist!: Colored ABC with Images</h2>
+
+                        <p class="author">By Tom Cage</p>
+
+                        <p class="description">
+                            Discover the magic of science, one letter at a time!
+                            From A for Amoeba to Z for Zygote, this colorful
+                            alphabet book introduces young readers to scientific
+                            concepts through playful language and illustrations.
+                            Created for curious children who love to explore,
+                            learn and ask questions.
+                        </p>
+
+                        <div class="book-details">
+                            <span>Paperback</span>
+                            <span>English</span>
+                            <span>Ages 4–8</span>
+                        </div>
+
+                        <div class="book-actions">
+                            <a class="button"
+                               href="https://www.amazon.com/dp/B0FY3MD6CZ"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Buy Now ↗
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <a class="footer-brand" href="index.html">synapsis.</a>
+            <p>Science · Education · Publishing</p>
+            <p>© <span id="year"></span> Synapsis</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+</body>
+</html>
